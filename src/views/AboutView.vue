@@ -4,17 +4,19 @@
       <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-          <div class="d-flex justify-content-around flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <img class="h2 col-3" src="../../public/logo.png"/>
+          <div
+            class="d-flex justify-content-around flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <img class="h2 col-3" src="../../public/logo.png" />
             <div class="row col-9">
               <!-- 關鍵字查詢 -->
               <input type="text" class="col-8 col-xl-4 rounded-pill" placeholder="請輸入關鍵字" @input="handleSearchInput">
               <!-- 年份下拉選單查詢 -->
               <div id="years" class="col col-xl-2 dropdown p-1">
                 <select class="form-select " v-model="searchYear" @change="selectedYear">
-									<option value="" selected>請選擇年份</option>
-                  <option v-for="yearOption in yearOptions" :key="yearOption" :value="yearOption" v-text="yearOption" @change="selectedYear"></option>
-								</select>
+                  <option value="" selected>請選擇年份</option>
+                  <option v-for="yearOption in yearOptions" :key="yearOption" :value="yearOption" v-text="yearOption"
+                    @change="selectedYear"></option>
+                </select>
                 <!-- <select class="form-select " aria-label="Default select example" v-model="year" v-on:change="handleSearChange">
 									<option value="">請選擇年份</option>
 									<template v-for="year in years">
@@ -25,15 +27,20 @@
 
               <!-- radio關鍵字查詢 -->
               <div id="season" class="col col-xl btn-group p-1">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" v-model="searchSeason" value="" checked @change="selectedSeason">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                  v-model="searchSeason" value="" checked @change="selectedSeason">
                 <label class="btn btn-outline-secondary" for="btnradio1">全</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" v-model="searchSeason" value="冬季" @change="selectedSeason">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off"
+                  v-model="searchSeason" value="冬季" @change="selectedSeason">
                 <label class="btn btn-outline-secondary" for="btnradio5" title="1~3月">1~3月</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" v-model="searchSeason" value="春季" @change="selectedSeason">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                  v-model="searchSeason" value="春季" @change="selectedSeason">
                 <label class="btn btn-outline-secondary" for="btnradio2" title="4~6月">4~6月</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" v-model="searchSeason" value="夏季" @change="selectedSeason">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                  v-model="searchSeason" value="夏季" @change="selectedSeason">
                 <label class="btn btn-outline-secondary" for="btnradio3" title="7~9月">7~9月</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" v-model="searchSeason" value="秋季" @change="selectedSeason">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
+                  v-model="searchSeason" value="秋季" @change="selectedSeason">
                 <label class="btn btn-outline-secondary" for="btnradio4" title="10~12月">10~12月</label>
                 <!-- 我的最愛查詢 -->
                 <!-- <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
@@ -111,12 +118,12 @@ export default {
       searchInput: '',
       searchData: [],
       searchSeason: '',
-      seasonOptions:[
-        {label:'全',value:''},
-        {label:'春',value:'春季'},
-        {label:'夏',value:'夏季'},
-        {label:'秋',value:'秋季'},
-        {label:'冬',value:'冬季'},
+      seasonOptions: [
+        { label: '全', value: '' },
+        { label: '春', value: '春季' },
+        { label: '夏', value: '夏季' },
+        { label: '秋', value: '秋季' },
+        { label: '冬', value: '冬季' },
       ],
       searchYear: '',
       yearOptions: [],
@@ -126,7 +133,7 @@ export default {
     this.cardData();
     this.loadCards();
     this.isSearch = false;
-    this.handleScroll();
+    // this.handleScroll();
     window.addEventListener('scroll', this.handleScroll);
     this.gatAllYears();
   },
@@ -178,9 +185,14 @@ export default {
     //偵測滾輪是否到最底下
     handleScroll() {
       const cardList = this.$refs.cardList;
-      if (cardList.getBoundingClientRect().bottom <= window.innerHeight) {
-        if (!this.isSearch) {
-          this.loadMore();
+      if(cardList){
+        const rect = cardList.getBoundingClientRect();
+        // console.log(rect.bottom);
+        // console.log(window.innerHeight);
+        if (rect.bottom-1 <= window.innerHeight) {
+          if (!this.isSearch) {
+            this.loadMore();
+          }
         }
       }
     },
@@ -211,19 +223,19 @@ export default {
       this.cards = this.searchFunction();
     },
     //季節選擇(搜尋2)
-    selectedSeason: function(){
+    selectedSeason: function () {
       this.cards = this.searchFunction();
     },
     //年份選擇(搜尋3)
-    selectedYear: function(){
+    selectedYear: function () {
       this.cards = this.searchFunction();
     },
-    gatAllYears(){
+    gatAllYears() {
       for (let i = 0; i < ACGList.length; i++) {
-        const yearstr = ACGList[i].releaseDate.slice(0,4);
-        if(this.yearOptions.indexOf(yearstr) == -1){
-            this.yearOptions.push(yearstr);
-          }
+        const yearstr = ACGList[i].releaseDate.slice(0, 4);
+        if (this.yearOptions.indexOf(yearstr) == -1) {
+          this.yearOptions.push(yearstr);
+        }
       }
     },
     //選擇搜尋方法
@@ -233,16 +245,16 @@ export default {
         this.loadCards();
         this.isSearch = false;
         return this.cards;
-      }else{
+      } else {
         this.isSearch = true;
-        return this.searchData.filter((card)=>{
-          if(String(card.tag).toLowerCase().indexOf(this.searchInput.trim().toLowerCase()) === -1){
+        return this.searchData.filter((card) => {
+          if (String(card.tag).toLowerCase().indexOf(this.searchInput.trim().toLowerCase()) === -1) {
             return false;
           }
-          if(this.selectedSeason && String(card.tag).toLowerCase().indexOf(this.searchSeason.trim().toLowerCase()) === -1){
+          if (this.selectedSeason && String(card.tag).toLowerCase().indexOf(this.searchSeason.trim().toLowerCase()) === -1) {
             return false;
           }
-          if(this.selectedYear && String(card.tag).toLowerCase().indexOf(this.searchYear.trim().toLowerCase()) === -1){
+          if (this.selectedYear && String(card.tag).toLowerCase().indexOf(this.searchYear.trim().toLowerCase()) === -1) {
             return false;
           }
           return true;
