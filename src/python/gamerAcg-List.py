@@ -27,9 +27,10 @@ title = ['中文','日文','英文','圖片','編號','上映日期','季']
 allData = []
 #ws.append(title)
 
-i = 1
+i = 1 #起始頁面
+o = 5 #結束頁面
 index = 0
-while (i<=10):#頁數
+while (i<=o):#頁數
     nextlink = "https://acg.gamer.com.tw/index.php?page="+str(i)+"&p=ANIME&t=1&tnum=6225"
     nl_response = rq.get(nextlink, headers=headers) # 用 requests 的 get 方法把網頁抓下來
 
@@ -98,6 +99,8 @@ while (i<=10):#頁數
 
                     Con = ",".join([p.text.strip()  for p in aNameMix])
                     aNum = imageURL.split('/')[-1]
+                    if '?' in aNum:
+                        aNum = aNum.split('?')[0]
 
                     print('\nCon')
                     print(Con)
