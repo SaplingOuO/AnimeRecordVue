@@ -10,7 +10,6 @@ import os
 import re
 import pandas as pd
 import json
-import codecs
 from datetime import datetime 
 
 headers = {
@@ -24,14 +23,14 @@ tStart = time.time()#計時開始
 #fp = io.open("..\\assets\\gamerAcg-List.txt",'ab+') #讀取gamerAcg-List.txt
 wb = Workbook()
 #ws = wb.active#創建excel.xlsx
-jp = io.open("..\\assets\\gamerAcg-List.json","w+",encoding="utf8")
 title = ['中文','日文','英文','圖片','編號','上映日期','季']
 allData = []
 #ws.append(title)
 
-i = 1
+i = 37 #起始頁面
+o = 38 #結束頁面
 index = 0
-while (i<=25):#頁數
+while (i<=o):#頁數
     nextlink = "https://acg.gamer.com.tw/index.php?page="+str(i)+"&p=ANIME&t=1&tnum=6225"
     nl_response = rq.get(nextlink, headers=headers) # 用 requests 的 get 方法把網頁抓下來
 
@@ -100,6 +99,8 @@ while (i<=25):#頁數
 
                     Con = ",".join([p.text.strip()  for p in aNameMix])
                     aNum = imageURL.split('/')[-1]
+                    if '?' in aNum:
+                        aNum = aNum.split('?')[0]
 
                     print('\nCon')
                     print(Con)
@@ -175,10 +176,12 @@ while (i<=25):#頁數
 
 
                 print('\n--------------第'+ str(index) +'輪結束--------------')
-                time.sleep(sleeptime(0,0,0.01))
+                time.sleep(sleeptime(0,0,0.5))
     i = i + 1
 tEnd = time.time()#計時結束\
 #fp.close()
+
+#將圖片格式統一轉換成小寫
 imageFile = os.listdir("..\\..\\public\\animeImages")
 for fileName in imageFile:
     fileNumber , fileType = os.path.splitext(fileName)
@@ -190,6 +193,33 @@ for fileName in imageFile:
         newFileName = (fileNumber + ".jpg")
         os.chdir("..\\..\\public\\animeImages")
         os.rename(fileName , newFileName)
-jp.write(json.dumps(list(allData),ensure_ascii=False))
-jp.close()
+
+# 讀取舊資料
+oldData = "..\\assets\\gamerAcg-List.json"
+def parse_date(date_str):
+    if date_str == '未上映':
+        return datetime(1900,1,1)
+    return datetime.strptime(date_str,'%Y年%m月%d日')
+#儲存json
+def saveJson(data):
+    with io.open("..\\assets\\gamerAcg-List.json","w+",encoding="utf8") as jp:
+        jp.write(json.dumps(list(data),ensure_ascii=False))
+try:
+    if os.path.getsize(oldData)>0:
+        with open(oldData,'r+',encoding='utf-8') as file:
+            loadOldData = json.load(file)
+        #將新資料與舊資料轉換成集合
+        oldDataSet = {json.dumps(entry, ensure_ascii=False) for entry in loadOldData}
+        newDataSet = {json.dumps(entry, ensure_ascii=False) for entry in allData}
+        #資料合併後轉為列表
+        newData = list(oldDataSet.union(newDataSet))
+        #將資料依據時間排序(新→舊)
+        sortedData = sorted((json.loads(entry) for entry in newData),key=lambda x:parse_date(x['releaseDate']), reverse=True)
+        saveJson(sortedData)
+    else:
+        saveJson(allData)
+        print("資料為空值，寫入抓取到的資料")
+except FileNotFoundError:
+    saveJson(allData)
+    print("檔案不存在，寫入抓取到的資料")
 print ("It cost %f sec" % (tEnd - tStart))#會自動做進位

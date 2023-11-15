@@ -1,19 +1,27 @@
+<script>
+import HomeViewSlide from '@/components/HomeView/HomeViewSlide.vue'
+
+export default {
+  components: {
+    HomeViewSlide
+  }
+}
+</script>
+
 <template>
-  <div class="home bg-warning">
+  <div class="body vh-100">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HomeViewSlide/>
     <button type="button" class="btn btn-primary">Primary</button>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+<style>
+.body{
+  background-color: #81C7D4;
+  background-image: url(/public/texture.png);
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }
-</script>
+</style>

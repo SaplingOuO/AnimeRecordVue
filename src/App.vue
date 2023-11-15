@@ -1,11 +1,13 @@
-<script setup>
+<script>
+import AppMenu from "@/components/App/AppMenu.vue"
+export default {
+  components: {
+    AppMenu
+  }
+}
 </script>
 
 <template>
-  <nav class="bg-info">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/test">Test</router-link>
-  </nav>
-  <router-view/>
+  <AppMenu />
+  <router-view />
 </template>
