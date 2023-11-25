@@ -27,8 +27,8 @@ title = ['中文','日文','英文','圖片','編號','上映日期','季']
 allData = []
 #ws.append(title)
 
-i = 37 #起始頁面
-o = 38 #結束頁面
+i = 3 #起始頁面
+o = 5 #結束頁面
 index = 0
 while (i<=o):#頁數
     nextlink = "https://acg.gamer.com.tw/index.php?page="+str(i)+"&p=ANIME&t=1&tnum=6225"
@@ -195,14 +195,14 @@ for fileName in imageFile:
         os.rename(fileName , newFileName)
 
 # 讀取舊資料
-oldData = "..\\assets\\gamerAcg-List.json"
+oldData = "..\\assets\\MyProject\\gamerAcg-List.json"
 def parse_date(date_str):
     if date_str == '未上映':
         return datetime(1900,1,1)
     return datetime.strptime(date_str,'%Y年%m月%d日')
 #儲存json
 def saveJson(data):
-    with io.open("..\\assets\\gamerAcg-List.json","w+",encoding="utf8") as jp:
+    with io.open("..\\assets\\MyProject\\gamerAcg-List.json","w+",encoding="utf8") as jp:
         jp.write(json.dumps(list(data),ensure_ascii=False))
 try:
     if os.path.getsize(oldData)>0:
