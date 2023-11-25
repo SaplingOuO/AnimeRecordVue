@@ -1,86 +1,56 @@
 <script>
 export default {
-  data() {
-    return {
-      isActive: false,
-    }
-  },
-  methods: {
-    toggleActive() {
-      this.isActive = !this.isActive;
-    }
-  },
+
 }
 </script>
 
 <template>
-  <!-- PhoneMenu -->
-  <div class="callMenu" :class="{ active: isActive }" @click="toggleActive">
+  <button type="button" class="callMenu btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
     <i class="line"></i>
     <i class="line"></i>
     <i class="line"></i>
-  </div>
-  <div class="menu rounded-3" :class="{ active: !isActive }">
-    <button class="btn btn-primary rounded-0 ">
-      <router-link class="text-white" to="/" @click="toggleActive">Home</router-link>
-    </button>
-    <button class="btn btn-primary rounded-0">
-      <router-link class="text-white" to="/AnimeList" @click="toggleActive">AnimeList</router-link>
-    </button>
-    <button class="btn btn-primary rounded-0">
-      <router-link class="text-white" to="/test" @click="toggleActive">Test</router-link>
-    </button>
+  </button>
 
-    <div class="btn btn-primary rounded-0 btn-group p-0" role="group">
-      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle rounded-0" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Down
-      </button>
-      <ul class="dropdown-menu p-0 rounded-0" aria-labelledby="btnGroupDrop1">
-        <li class="btn btn-primary rounded-0"><a class="p-0 text-white" href="#">link123</a></li>
-        <li class="btn btn-primary rounded-0"><a class="p-0 text-white" href="#">link321</a></li>
-      </ul>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title w-100" id="exampleModalLabel">目錄</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer bg-dark">
+          
+          <!-- 路徑於src\router\index.js修改 -->
+          <button class="btn w-100 fs-2" data-bs-dismiss="modal">
+            <router-link class="fontCSS" to="/">簡介</router-link>
+          </button>
+          <button class="btn w-100 fs-2" data-bs-dismiss="modal">
+            <router-link class="fontCSS" to="/SlicingCoding">切版練習</router-link>
+          </button>
+          <button class="btn w-100 fs-2" data-bs-dismiss="modal">
+            <router-link class="fontCSS" to="/MyComponents">小元件練習</router-link>
+          </button>
+          <button class="btn w-100 fs-2" data-bs-dismiss="modal">
+            <router-link class="fontCSS" to="/MyProject">專案練習</router-link>
+          </button>
+
+
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="menuText">
-      <div class="btn fs-1">簡介</div>
-      <div class="btn fs-1">切版練習</div>
-      <div class="btn fs-1">小元件練習</div>
-      <div class="btn fs-1">專案練習</div>
   </div>
 </template>
 
 <style>
-.menu {
-  position: fixed;
-  cursor: pointer;
-  bottom: 20px;
-  right: 20px;
-  max-width: 150px;
-  overflow: hidden;
-  z-index: 50;
-}
-.menuText{
-  position: fixed;
-  font-family:DFKai-sb;
-  bottom: 20px;
-  right: 20px;
-  max-width: 150px;
-  overflow: hidden;
-  z-index: 50;
-}
-.btn {
-  width: 150px;
-}
 
 .callMenu {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 50;
+  z-index: 2;
 }
 
-.callMenu .line {
+.line {
   display: block;
   height: 4px;
   width: 40px;
@@ -91,19 +61,9 @@ export default {
   transition: all 1500ms ease;
 }
 
-.callMenu.active .line {
-  display: none;
-}
-
-.menu.active {
-  width: 0;
-}
-
-.menu .btn .text-white {
-  text-decoration: none;
-}
-
-.menu .btn .text-white:hover {
-  font-weight: bold;
+.fontCSS {
+  color: aliceblue;
+  font-style: Microsoft JhengHei;
+  text-decoration-line: none;
 }
 </style>

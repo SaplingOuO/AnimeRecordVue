@@ -1,12 +1,12 @@
 <template>
-  <div class="about">
+  <div class="animeCard">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
           <div
             class="d-flex justify-content-around flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <img class="h2 col-3" src="../../public/logo.png" />
+            <img class="h2 col-3" src="../../../public/MyProject/logo.png" />
             <div class="row col-9">
               <!-- 關鍵字查詢 -->
               <input type="text" class="col-8 col-xl-4 rounded-pill" placeholder="請輸入關鍵字" @input="handleSearchInput">
@@ -60,7 +60,7 @@
           <!-- 卡片部分已完成2023/3/30 -->
           <!-- 我的最愛圖示未做完 -->
           <div id="cards" class="container">
-            <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-0" ref="cardList">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-0 " ref="cardList">
               <!-- 卡片 -->
               <!-- <img :src="require(`@/assets/animeImages/0000114480.JPG`)"> -->
               <template v-for="card in cards" :key="card">
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import ACGList from "../assets/gamerAcg-List.json";
+import ACGList from "../../assets/MyProject/gamerAcg-List.json";
 
 export default {
   data() {

@@ -1,9 +1,10 @@
+<script>
+</script>
+
 <template>
-  <div class="test">
-    <footer>
-    </footer>
+  <div>
   </div>
 </template>
 
-<script>
-</script>
+<style>
+</style>
