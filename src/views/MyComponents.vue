@@ -11,8 +11,8 @@ export default {
                     // imageSRC: 'ABC',
                 },
                 {
-                    title: 'ABC',
-                    description: 'ABC',
+                    title: 'HomeViewSlide',
+                    description: '使用carousel-3d的輪播',
                     // imageSRC: 'ABC',
                 },
                 {

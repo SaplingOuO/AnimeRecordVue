@@ -1,4 +1,5 @@
 <script>
+
 export default {
     data() {
         return {
@@ -39,18 +40,8 @@ export default {
             showView:1,
         };
     },
-    beforeRouteUpdate(to, from, next) {
-        if (to.matched.length > 1) {
-            this.displayNone = true;
-        } else {
-            this.displayNone = false;
-        }
-        next();
-    },
     mounted() {
-        if (!this.displayNone) {
-            this.cardData();
-        }
+        this.cardData();
     },
     methods: {
         //載入資料
@@ -66,7 +57,8 @@ export default {
             }
         },
         toggleShowView(){
-            this.showView = !this.showView;
+            // this.showView = !this.showView;
+            this.$store.commit('toggleShowView');
         },
     }
 };
@@ -76,7 +68,7 @@ export default {
     
     <div class="row m-0" v-if="showView">
         <div class="col-lg-1"></div>
-        <div class="col-lg-10" :class="{ 'd-none': displayNone }">
+        <div class="col-lg-10" >
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-0 justify-content-around">
                 <div v-for="card in cards" :key="card">
                     <div class="col p-0 card m-3" style="width: 18rem">

@@ -24,6 +24,10 @@ const routes = [
         path:'animatedText',
         component: () => import('../components/MyComponents/animatedText.vue'),
       },
+      {
+        path:'HomeViewSlide',
+        component: () => import('../components/MyComponents/HomeViewSlide.vue'),
+      },
     ]
   },
   {

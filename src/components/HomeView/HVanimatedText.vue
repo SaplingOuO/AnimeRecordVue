@@ -3,7 +3,12 @@
 export default {
     data() {
         return {
-            sloganTextArray: ["這是測試文字","這是第二行"],
+            sloganTextArray: [
+                "您好我是沈柏均",
+                "此網站於2023年建立",
+                "已成立"+`${this.getAge()}`+"年",
+                "作品集請點右下Menu",
+            ],
             animatedText: "",
             textIndex: 0,
             textLength: 0,
@@ -13,15 +18,20 @@ export default {
         setTimeout(() => this.typeWriter(), 1000);
     },
     methods: {
+        getAge(){
+            let Y = new Date().getFullYear();
+            return Y-2023;
+        },
         typeWriter() {
             const speed = 100;
             const currentText = this.sloganTextArray[this.textIndex];
-            console.log(currentText);
             if (this.textLength < currentText.length) {
                 this.animatedText += currentText.charAt(this.textLength);
                 this.textLength++;
                 setTimeout(this.typeWriter, speed);
+                
             }else{
+                //換行
                 this.textIndex++;
                 this.textLength = 0;
                 if (this.textIndex < this.sloganTextArray.length) {
@@ -43,17 +53,13 @@ export default {
 </script>
 
 <template>
-    <div>
-        <h1 class="mb-0" ref="newlineControl" v-html="`${animatedText}<span id='spanCaret'>&nbsp;</span>`"></h1>
-        <!-- <input ref="myInput"> -->
-        <textarea row="12" cols="50" ref="myInput"></textarea>
-        <br>
-        <button @click="changeText">Change Text</button>
-    </div>
-
+    <div class="fs-1 fw-bolder lh-1 text-center" ref="newlineControl" v-html="`${animatedText}<span id='spanCaret'>&nbsp;</span>`"></div>
 </template>
 
 <style>
+h1{
+    font-family: monospace;
+}
 #spanCaret {
   border-left: 5px solid rgb(0, 0, 0);
   margin-left: 3px;

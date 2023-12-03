@@ -1,23 +1,21 @@
 <script>
-import HomeViewSlide from '@/components/HomeView/HomeViewSlide.vue'
-
+import HVanimatedText from '@/components/HomeView/HVanimatedText.vue';
 export default {
   components: {
-    HomeViewSlide
+    HVanimatedText,
   }
 }
 </script>
 
 <template>
   <div class="body vh-100">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HomeViewSlide/>
+    <HVanimatedText/>
   </div>
 </template>
 
 <style>
 .body{
   background-image: url(/public/texture.png);
-  background-color: #000000;
+  background-color: rgba(103, 255, 204, 0.5);
 }
 </style>
