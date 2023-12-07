@@ -8,6 +8,8 @@ export default {
 </script>
 
 <template>
-  <AppMenu />
-  <router-view />
+  <div>
+    <AppMenu />
+    <router-view />
+  </div>
 </template>

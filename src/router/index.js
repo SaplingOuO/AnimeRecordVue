@@ -22,10 +22,12 @@ const routes = [
     children:[
       {
         path:'animatedText',
+        name: 'animatedText',
         component: () => import('../components/MyComponents/animatedText.vue'),
       },
       {
         path:'HomeViewSlide',
+        name: 'HomeViewSlide',
         component: () => import('../components/MyComponents/HomeViewSlide.vue'),
       },
     ]

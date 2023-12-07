@@ -4,7 +4,6 @@ export default {
     data() {
         return {
             sloganTextArray: [
-                "您好我是沈柏均",
                 "此網站於2023年建立",
                 "已成立"+`${this.getAge()}`+"年",
                 "作品集請點右下Menu",
