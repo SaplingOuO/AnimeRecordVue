@@ -17,9 +17,13 @@ const routes = [
   },
   {
     path: '/MyComponents',
-    name: 'MyComponents',
     component: () => import('../views/MyComponents.vue'),
     children:[
+      {
+        path:'',
+        name: 'MyComponents',
+        component: () => import('../views/MyComponents.vue'),
+      },
       {
         path:'animatedText',
         name: 'animatedText',
@@ -34,11 +38,16 @@ const routes = [
   },
   {
     path: '/MyProject',
-    name: 'MyProject',
     component: () => import('../views/MyProject.vue'),
     children:[
       {
+        path:'',
+        name: 'MyProject',
+        component: () => import('../views/MyProject.vue'),
+      },
+      {
         path:'AnimeList',
+        name: 'AnimeList',
         component: () => import('../components/MyProject/AnimeList.vue'),
       },
     ],
