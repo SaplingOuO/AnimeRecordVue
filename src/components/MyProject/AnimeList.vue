@@ -165,7 +165,7 @@ export default {
       // console.log(this.loadedCount);
       for (let i = 0; i < this.loadedCount; i++) {
         const card = {
-          imageSrc: "/animeImages/" + ACGList[i].image,
+          imageSrc: "../animeImages/" + ACGList[i].image,
           title: ACGList[i].cn,
           tag:
             ACGList[i].cn +

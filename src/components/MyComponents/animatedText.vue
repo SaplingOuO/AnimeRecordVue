@@ -16,7 +16,7 @@ export default {
         typeWriter() {
             const speed = 100;
             const currentText = this.sloganTextArray[this.textIndex];
-            console.log(currentText);
+            // console.log(currentText);
             if (this.textLength < currentText.length) {
                 this.animatedText += currentText.charAt(this.textLength);
                 this.textLength++;
