@@ -6,6 +6,6 @@ module.exports = ({
   // publicPath: './',
   // outputDir:'./dist',
   // assetsDir:'./static',
-  filenameHashing: false,
+  // filenameHashing: false,
   // transpileDependencies: true,
 })
