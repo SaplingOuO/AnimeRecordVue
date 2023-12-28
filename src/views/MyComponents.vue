@@ -16,8 +16,8 @@ export default {
                     // imageSRC: 'ABC',
                 },
                 {
-                    title: 'ABC',
-                    description: 'ABC',
+                    title: 'BackgroundColorChange',
+                    description: '背景自動換色',
                     // imageSRC: 'ABC',
                 },
                 {

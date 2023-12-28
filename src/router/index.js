@@ -30,6 +30,11 @@ const routes = [
         name: 'HomeViewSlide',
         component: () => import('../components/MyComponents/HomeViewSlide.vue'),
       },
+      {
+        path:'BackgroundColorChange',
+        name: 'BackgroundColorChange',
+        component: () => import('../components/MyComponents/BackgroundColorChange.vue'),
+      },
     ]
   },
   {
