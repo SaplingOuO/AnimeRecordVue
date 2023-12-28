@@ -29,14 +29,19 @@ export default {
             this.colorCustomArray[index][2] = this.B_rangeValue;
         },
         backGroundColorChange(){
-            return 'linear-gradient(-45deg, rgb('+ this.colorCustomArray[3] +'),rgb('+ this.colorCustomArray[2] +'),rgb('+ this.colorCustomArray[1] +'),rgb('+ this.colorCustomArray[0] +'))' ;
+            return {
+                background: 'linear-gradient(-45deg, rgb('+ this.colorCustomArray[3] +'),rgb('+ this.colorCustomArray[2] +'),rgb('+ this.colorCustomArray[1] +'),rgb('+ this.colorCustomArray[0] +'))',
+                'background-size' : '400% 400%',
+                animation: 'gradient 15s ease infinite',
+                height: '100vh',
+            };
         },
     }
 }
 </script>
 
 <template>
-    <div class="cube" v-bind:style="{ background : backGroundColorChange()}">
+    <div class="cube" v-bind:style= "backGroundColorChange()">
         <div class="position-absolute top-50 start-50 translate-middle">
             <div style="width: 200px;">
                 <div class="d-flex justify-content-between">
@@ -68,11 +73,6 @@ export default {
 </template>
 
 <style>
-.cube {
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    height: 100vh;
-}
 
 @keyframes gradient {
     0% {
