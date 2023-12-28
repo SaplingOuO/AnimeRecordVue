@@ -18,7 +18,7 @@ export default {
             this.G_rangeValue = this.colorCustomArray[index][1];
             this.B_rangeValue = this.colorCustomArray[index][2];
             this.currentIndex = index;
-            this.customRange = !this.customRange;
+            this.customRange = false;
         },
         activeColor(index){
             return 'rgb('+this.colorCustomArray[index][0]+','+this.colorCustomArray[index][1]+','+this.colorCustomArray[index][2]+')'
@@ -41,16 +41,16 @@ export default {
 </script>
 
 <template>
-    <div class="cube" v-bind:style= "backGroundColorChange()">
+    <div v-bind:style= "backGroundColorChange()">
         <div class="position-absolute top-50 start-50 translate-middle">
             <div style="width: 200px;">
                 <div class="d-flex justify-content-between">
-                    <button v-on:click="showCustomRange(0)" class="color_1 btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(0) }"></button>
-                    <button v-on:click="showCustomRange(1)" class="color_2 btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(1) }"></button>
-                    <button v-on:click="showCustomRange(2)" class="color_3 btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(2) }"></button>
-                    <button v-on:click="showCustomRange(3)" class="color_4 btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(3) }"></button>
+                    <button v-on:click="showCustomRange(0)" class="btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(0) }"></button>
+                    <button v-on:click="showCustomRange(1)" class="btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(1) }"></button>
+                    <button v-on:click="showCustomRange(2)" class="btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(2) }"></button>
+                    <button v-on:click="showCustomRange(3)" class="btn" style="height: 40px; width: 40px;" v-bind:style="{ 'background-color' : activeColor(3) }"></button>
                 </div>
-                <div class="colorChange" :class="{ 'd-none' : customRange}">
+                <div :class="{'d-none':customRange}">
                     <div class="R_customRange">
                         <label for="R_customRange" class="form-label">Red</label>
                         <div class="btn btn-dark  disabled float-end">{{ R_rangeValue }}</div>
@@ -66,6 +66,9 @@ export default {
                         <div class="btn btn-dark  disabled float-end">{{ B_rangeValue }}</div>
                         <input v-model="B_rangeValue" type="range" class="form-range" min="0" max="255" id="B_customRange" @input="updateColorArray(currentIndex)">
                     </div>
+                    <div style="display: flex; justify-content: center;">
+                        <button class="btn-close" @click="customRange = true"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,7 +76,6 @@ export default {
 </template>
 
 <style>
-
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
