@@ -8,8 +8,19 @@ const routes = [
   },
   {
     path: '/SlicingCoding',
-    name: 'SlicingCoding',
-    component: () => import('../views/SlicingCoding.vue')
+    component: () => import('../views/SlicingCoding.vue'),
+    children:[
+      {
+        path:'',
+        name: 'SlicingCoding',
+        component: () => import('../views/SlicingCoding.vue'),
+      },
+      {
+        path:'ParallaxRoad',
+        name: 'ParallaxRoad',
+        component: () => import('../components/SlicingCoding/ParallaxRoad.vue'),
+      },
+    ],
   },
   {
     path: '/MyComponents',
@@ -34,6 +45,11 @@ const routes = [
         path:'BackgroundColorChange',
         name: 'BackgroundColorChange',
         component: () => import('../components/MyComponents/BackgroundColorChange.vue'),
+      },
+      {
+        path:'PokemonTypeFighting',
+        name: 'PokemonTypeFighting',
+        component: () => import('../components/MyComponents/PokemonTypeFighting.vue'),
       },
     ]
   },
