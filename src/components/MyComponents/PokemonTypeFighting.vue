@@ -59,72 +59,58 @@ export default {
                 this.typeA = this.selectedTypes[0].type;
                 this.typeB = this.selectedTypes[1].type;
 
+                
                 // selectedTypes內兩個都有東西
                 if (this.selectedTypes[0].type >= 0 && this.selectedTypes[1].type >= 0) {
-
-
-                    // superEffective運算
-
-                    this.superEffectiveIntegrate = this.types[this.typeA].superEffective.concat(this.types[this.typeB].superEffective).sort((a, b) => a - b);
-                    this.superEffectiveIntegrate.forEach((value) => {
-                        this.allArray.push({ type: this.types[value].typeCH, magnification: 2 })
-                        if (this.superEffectiveIntegrate != null) {
-                            this.superEffectiveIntegrate = this.types[this.typeA].superEffective.concat(this.types[this.typeB].superEffective).sort((a, b) => a - b);
-                        }
-                    })
-
-                    //weakness運算
-                    this.weaknessIntegrate = this.types[this.typeA].weakness.concat(this.types[this.typeB].weakness).sort((a, b) => a - b);
-                    this.weaknessIntegrate.forEach((value) => {
-                        this.allArray.push({ type: this.types[value].typeCH, magnification: 0.5 })
-                        if (this.weaknessIntegrate != null) {
-                            this.weaknessIntegrate = this.types[this.typeA].weakness.concat(this.types[this.typeB].weakness).sort((a, b) => a - b);
-                        }
-                    })
-
-
-                    //noEffective運算
-                    if (this.types[this.typeA].noEffective != null) {
-                        this.noEffectiveIntegrate = this.types[this.typeA].noEffective.sort((a, b) => a - b);
-                        this.noEffectiveIntegrate.forEach((value) => {
-                            this.allArray.push({ type: this.types[value].typeCH, magnification: 0 })
-                        });
-                    }
-                    if (this.types[this.typeB].noEffective != null) {
-                        this.noEffectiveIntegrate = this.types[this.typeB].noEffective.sort((a, b) => a - b);
-                        this.noEffectiveIntegrate.forEach((value) => {
-                            this.allArray.push({ type: this.types[value].typeCH, magnification: 0 })
-                        });
-                    }
-
-                    // 整合計算
-                    const res = Object.values(this.allArray.reduce((a, b) => {
-                        const key = b.type;
-                        a[key] = a[key] || { type: b.type, magnification: 1 };
-
-                        // 將att轉為數字，然後相乘
-                        a[key].magnification *= b.magnification;
-
-                        return a;
-                    }, {}));
-
-                    this.allArray = [];
-                    this.allArray = res;
-
-                    // console.log(this.allArray)
-
-                    this.superEffectiveView = this.allArray.filter(e => e.magnification >= 2).sort((a, b) => b - a);
-                    // console.log(this.superEffectiveView)
-                    this.weaknessView = this.allArray.filter(e => e.magnification < 1 && e.magnification > 0).sort((a, b) => b - a);
-                    // console.log(this.weaknessView)
-                    this.normalView = this.allArray.filter(e => e.magnification == 1).sort((a, b) => b - a);
-                    // console.log(this.noEffectiveView)
-                    this.noEffectiveView = this.allArray.filter(e => e.magnification == 0).sort((a, b) => b - a);
-                    // console.log(this.noEffectiveView)
-
-
+                    this.superEffectiveIntegrate = (this.types[this.typeA].superEffective || []).concat((this.types[this.typeB].superEffective || [])).sort((a, b) => a - b);
+                    this.weaknessIntegrate = (this.types[this.typeA].weakness || []).concat(this.types[this.typeB].weakness).sort((a, b) => a - b);
+                    this.noEffectiveIntegrate = (this.types[this.typeA].noEffective || []).concat((this.types[this.typeB].noEffective || [])).sort((a, b) => a - b);
+                    this.pushArray(this.superEffectiveIntegrate);
+                    this.pushArray(this.weaknessIntegrate);
+                    this.pushArray(this.noEffectiveIntegrate);
+                // 第一個屬性有東西
+                }else if(this.selectedTypes[0].type >= 0 && this.selectedTypes[1].type == -1){
+                    this.superEffectiveIntegrate = (this.types[this.typeA].superEffective || []).sort((a, b) => a - b);
+                    this.weaknessIntegrate = (this.types[this.typeA].weakness || []).sort((a, b) => a - b);
+                    this.noEffectiveIntegrate = (this.types[this.typeA].noEffective || []).sort((a, b) => a - b);
+                    this.pushArray(this.superEffectiveIntegrate);
+                    this.pushArray(this.weaknessIntegrate);
+                    this.pushArray(this.noEffectiveIntegrate);
+                // 第二個屬性有東西
+                }else if(this.selectedTypes[0].type == -1 && this.selectedTypes[1].type >= 0){ 
+                    this.superEffectiveIntegrate = (this.types[this.typeB].superEffective || []).sort((a, b) => a - b);
+                    this.weaknessIntegrate = (this.types[this.typeB].weakness || []).sort((a, b) => a - b);
+                    this.noEffectiveIntegrate = (this.types[this.typeB].noEffective || []).sort((a, b) => a - b);
+                    this.pushArray(this.superEffectiveIntegrate);
+                    this.pushArray(this.weaknessIntegrate);
+                    this.pushArray(this.noEffectiveIntegrate);
                 }
+                
+                // 整合計算
+                const res = Object.values(this.allArray.reduce((a, b) => {
+                    const key = b.type;
+                    a[key] = a[key] || { type: b.type, magnification: 1 };
 
+                    // 將att轉為數字，然後相乘
+                    a[key].magnification *= b.magnification;
+
+                    return a;
+                }, {}));
+
+                this.allArray = [];
+                this.allArray = res;
+
+                // console.log(this.allArray)
+
+                this.superEffectiveView = this.allArray.filter(e => e.magnification >= 2).sort((a, b) => b - a);
+                // console.log(this.superEffectiveView)
+                this.weaknessView = this.allArray.filter(e => e.magnification < 1 && e.magnification > 0).sort((a, b) => b - a);
+                // console.log(this.weaknessView)
+                this.normalView = this.allArray.filter(e => e.magnification == 1).sort((a, b) => b - a);
+                // console.log(this.noEffectiveView)
+                this.noEffectiveView = this.allArray.filter(e => e.magnification == 0).sort((a, b) => b - a);
+                // console.log(this.noEffectiveView)
+                this.allArray = [];
 
 
             } catch (error) {
@@ -137,7 +123,28 @@ export default {
         deleteType(index) {
             this.selectedTypes[index].type = -1;
             this.allArray = [];
+            this.updateType(-1);
         },
+        pushArray(data){
+            switch(data){
+                case this.superEffectiveIntegrate:
+                    data.forEach((value) => {
+                        this.allArray.push({ type: this.types[value].typeCH, magnification: 2 })
+                    })
+                    return;
+                case this.weaknessIntegrate:
+                    data.forEach((value) => {
+                        this.allArray.push({ type: this.types[value].typeCH, magnification: 0.5 })
+                    })
+                    return;
+                case this.noEffectiveIntegrate:
+                    data.forEach((value) => {
+                        this.allArray.push({ type: this.types[value].typeCH, magnification: 0 })
+                    })
+                    return;
+            }
+        }
+
     },
 }
 </script>
