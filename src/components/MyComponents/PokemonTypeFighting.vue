@@ -5,24 +5,24 @@ export default {
         return {
             // 使用招式的倍率 noEffective = 0 , weakness = 0.5 , superEffective = 2
             types: [
-                { typeEN: 'Normal', typeCH: '普通', noEffective: [13], superEffective: [6] },
-                { typeEN: 'Fire', typeCH: '火', weakness: [1, 4, 5, 11, 16, 17], superEffective: [2, 8, 12] },
-                { typeEN: 'Water', typeCH: '水', weakness: [1, 2, 5, 16], superEffective: [3, 4] },
-                { typeEN: 'Electric', typeCH: '電', weakness: [3, 9, 16], superEffective: [8] },
-                { typeEN: 'Grass', typeCH: '草', weakness: [2, 3, 4, 8], superEffective: [1, 5, 7, 9, 11] },
-                { typeEN: 'Ice', typeCH: '冰', weakness: [5], superEffective: [1, 6, 12, 16] },
-                { typeEN: 'Fighting', typeCH: '格鬥', weakness: [11, 12, 15], superEffective: [9, 10, 17] },
-                { typeEN: 'Poison', typeCH: '毒', weakness: [4, 6, 7, 11, 17], superEffective: [8, 10] },
-                { typeEN: 'Ground', typeCH: '地面', noEffective: [3], weakness: [7, 12], superEffective: [2, 4, 5] },
-                { typeEN: 'Flying', typeCH: '飛行', noEffective: [8], weakness: [4, 6, 11], superEffective: [3, 5, 12] },
-                { typeEN: 'Psychic', typeCH: '超能力', weakness: [6, 10], superEffective: [11, 13, 15] },
-                { typeEN: 'Bug', typeCH: '蟲', weakness: [4, 6, 8], superEffective: [1, 9, 12] },
-                { typeEN: 'Rock', typeCH: '岩石', weakness: [0, 1, 7, 9], superEffective: [2, 4, 6, 8, 16] },
-                { typeEN: 'Ghost', typeCH: '幽靈', noEffective: [0, 6], weakness: [7, 11], superEffective: [13, 15] },
-                { typeEN: 'Dragon', typeCH: '龍', weakness: [1, 2, 3, 4], superEffective: [5, 14, 17] },
-                { typeEN: 'Dark', typeCH: '惡', noEffective: [10], weakness: [13, 15], superEffective: [6, 11, 17] },
-                { typeEN: 'Steel', typeCH: '鋼', noEffective: [7], weakness: [0, 4, 5, 9, 10, 11, 12, 14, 16, 17], superEffective: [1, 6, 8] },
-                { typeEN: 'Fairy', typeCH: '妖精', noEffective: [14], weakness: [6, 11, 15], superEffective: [7, 16] },
+                { typeImg: '../PokemonTypeFightingData/Normal.png', typeColor:'rgb(144,153,161)', typeEN: 'Normal', typeCH: '一般', noEffective: [13], superEffective: [6] },
+                { typeImg: '../PokemonTypeFightingData/Fire.png', typeColor:'rgb(232,39,38)', typeEN: 'Fire', typeCH: '火', weakness: [1, 4, 5, 11, 16, 17], superEffective: [2, 8, 12] },
+                { typeImg: '../PokemonTypeFightingData/Water.png', typeColor:'rgb(42,129,239)', typeEN: 'Water', typeCH: '水', weakness: [1, 2, 5, 16], superEffective: [3, 4] },
+                { typeImg: '../PokemonTypeFightingData/Electric.png', typeColor:'rgb(252,194,2)', typeEN: 'Electric', typeCH: '電', weakness: [3, 9, 16], superEffective: [8] },
+                { typeImg: '../PokemonTypeFightingData/Grass.png', typeColor:'rgb(66,159,45)', typeEN: 'Grass', typeCH: '草', weakness: [2, 3, 4, 8], superEffective: [1, 5, 7, 9, 11] },
+                { typeImg: '../PokemonTypeFightingData/Ice.png', typeColor:'rgb(60,218,250)', typeEN: 'Ice', typeCH: '冰', weakness: [5], superEffective: [1, 6, 12, 16] },
+                { typeImg: '../PokemonTypeFightingData/Fighting.png', typeColor:'rgb(253,129,6)', typeEN: 'Fighting', typeCH: '格鬥', weakness: [11, 12, 15], superEffective: [9, 10, 17] },
+                { typeImg: '../PokemonTypeFightingData/Poison.png', typeColor:'rgb(143,66,202)', typeEN: 'Poison', typeCH: '毒', weakness: [4, 6, 7, 11, 17], superEffective: [8, 10] },
+                { typeImg: '../PokemonTypeFightingData/Ground.png', typeColor:'rgb(145,81,32)', typeEN: 'Ground', typeCH: '地面', noEffective: [3], weakness: [7, 12], superEffective: [2, 4, 5] },
+                { typeImg: '../PokemonTypeFightingData/Flying.png', typeColor:'rgb(129,186,237)', typeEN: 'Flying', typeCH: '飛行', noEffective: [8], weakness: [4, 6, 11], superEffective: [3, 5, 12] },
+                { typeImg: '../PokemonTypeFightingData/Psychic.png', typeColor:'rgb(243,63,119)', typeEN: 'Psychic', typeCH: '超能力', weakness: [6, 10], superEffective: [11, 13, 15] },
+                { typeImg: '../PokemonTypeFightingData/Bug.png', typeColor:'rgb(144,161,23)', typeEN: 'Bug', typeCH: '蟲', weakness: [4, 6, 8], superEffective: [1, 9, 12] },
+                { typeImg: '../PokemonTypeFightingData/Rock.png', typeColor:'rgb(179,169,132)', typeEN: 'Rock', typeCH: '岩石', weakness: [0, 1, 7, 9], superEffective: [2, 4, 6, 8, 16] },
+                { typeImg: '../PokemonTypeFightingData/Ghost.png', typeColor:'rgb(111,65,112)', typeEN: 'Ghost', typeCH: '幽靈', noEffective: [0, 6], weakness: [7, 11], superEffective: [13, 15] },
+                { typeImg: '../PokemonTypeFightingData/Dragon.png', typeColor:'rgb(78,97,224)', typeEN: 'Dragon', typeCH: '龍', weakness: [1, 2, 3, 4], superEffective: [5, 14, 17] },
+                { typeImg: '../PokemonTypeFightingData/Dark.png', typeColor:'rgb(80,65,61)', typeEN: 'Dark', typeCH: '惡', noEffective: [10], weakness: [13, 15], superEffective: [6, 11, 17] },
+                { typeImg: '../PokemonTypeFightingData/Steel.png', typeColor:'rgb(96,161,187)', typeEN: 'Steel', typeCH: '鋼', noEffective: [7], weakness: [0, 4, 5, 9, 10, 11, 12, 14, 16, 17], superEffective: [1, 6, 8] },
+                { typeImg: '../PokemonTypeFightingData/Fairy.png', typeColor:'rgb(242,109,240)', typeEN: 'Fairy', typeCH: '妖精', noEffective: [14], weakness: [6, 11, 15], superEffective: [7, 16] },
             ],
             selectedTypes: [{ type: -1 }, { type: -1 }],
             typeLimit: 0,
@@ -35,7 +35,7 @@ export default {
             allArray: [],
             superEffectiveView: [],
             weaknessView: [],
-            normalView: [],
+            // normalView: [],
             noEffectiveView: [],
         };
     },
@@ -96,17 +96,12 @@ export default {
 
                     return a;
                 }, {}));
-
-                this.allArray = [];
                 this.allArray = res;
-
-                // console.log(this.allArray)
-
                 this.superEffectiveView = this.allArray.filter(e => e.magnification >= 2).sort((a, b) => b - a);
                 // console.log(this.superEffectiveView)
                 this.weaknessView = this.allArray.filter(e => e.magnification < 1 && e.magnification > 0).sort((a, b) => b - a);
                 // console.log(this.weaknessView)
-                this.normalView = this.allArray.filter(e => e.magnification == 1).sort((a, b) => b - a);
+                // this.normalView = this.allArray.filter(e => e.magnification == 1).sort((a, b) => b - a);
                 // console.log(this.noEffectiveView)
                 this.noEffectiveView = this.allArray.filter(e => e.magnification == 0).sort((a, b) => b - a);
                 // console.log(this.noEffectiveView)
@@ -143,7 +138,7 @@ export default {
                     })
                     return;
             }
-        }
+        },
 
     },
 }
@@ -153,40 +148,41 @@ export default {
     <div class="row g-0">
         <div class="col">
             <h1>遇到的寶可夢屬性</h1>
-            <div class="w-100" v-for="(selectedType, index) in selectedTypes" :key="index">
-                <div v-if="types[selectedType.type]">
-                    <button class="fs-1" @click="deleteType(index)">{{ types[selectedType.type].typeCH }}</button>
-                </div>
+            <button class="col-6 fs-1" v-for="(selectedType, index) in selectedTypes" :key="index" @click="deleteType(index)" v-show="types[selectedType.type] != null">{{ types[selectedType.type] ? types[selectedType.type].typeCH : null }}</button>
+            <div class="row g-0">
+                <button class="typeImg col-3 border-0 rounded-pill m-1 p-1 fw-bold text-light" :style=" {'background-color':types[index].typeColor ,'background-image':'url('+types[index].typeImg+')'}" v-for="(type, index) in types" :key="type" @click="updateType(index)">{{ type.typeCH }}</button>
             </div>
-            <button v-for="(type, index) in types" :key="type" @click="updateType(index)">{{ type.typeCH }}</button>
         </div>
 
         <div class="col">
-            <h1>有利的屬性招式</h1>
-            <div class="row" v-for="item in superEffectiveView" :key="item">
+            <h1>效果絕佳</h1>
+            <div class="row g-0" v-for="item in superEffectiveView" :key="item">
                 <div class="col">{{ item.type }}</div>
                 <div class="col">{{ item.magnification }}</div>
             </div>
-            <!-- <h2>{{ superEffectiveView }}</h2> -->
-            <h1>不利的屬性招式</h1>
-            <div class="row" v-for="item in weaknessView" :key="item">
+            <h1>效果不好</h1>
+            <div class="row g-0" v-for="item in weaknessView" :key="item">
                 <div class="col">{{ item.type }}</div>
                 <div class="col">{{ item.magnification }}</div>
             </div>
-            <!-- <h2>{{ weaknessView }}</h2> -->
-            <h1>倍率1傷害</h1>
-            <div class="row" v-for="item in normalView" :key="item">
+            <!-- <h1>有效果</h1>
+            <div class="row g-0" v-for="item in normalView" :key="item">
+                <div class="col">{{ item.type }}</div>
+                <div class="col">{{ item.magnification }}</div>
+            </div> -->
+            <h1>沒有效果</h1>
+            <div class="row g-0" v-for="item in noEffectiveView" :key="item">
                 <div class="col">{{ item.type }}</div>
                 <div class="col">{{ item.magnification }}</div>
             </div>
-            <h1>沒傷害</h1>
-            <div class="row" v-for="item in noEffectiveView" :key="item">
-                <div class="col">{{ item.type }}</div>
-                <div class="col">{{ item.magnification }}</div>
-            </div>
-            <!-- <h2>{{ noEffectiveView }}</h2> -->
         </div>
     </div>
 </template>
 
-<style></style>
+<style>
+.typeImg{
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 5px;
+}
+</style>

@@ -3,7 +3,7 @@ export default {
 }
 </script>
 
-<template>
+<template >
   <button type="button" class="callMenu btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
     <i class="line"></i>
     <i class="line"></i>
