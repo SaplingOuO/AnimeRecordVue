@@ -16,4 +16,4 @@
  - Bootstrap 5
  - Vue 3
 
-### [點此進入網站](saplingouo.github.io/AnimeRecordVue/).
+### [點此進入網站](https://saplingouo.github.io/AnimeRecordVue/).
