@@ -1,24 +1,19 @@
-# animerecordvue
+# 關於animerecordvue這個網站
 
-## Project setup
-```
-npm install
-```
+### 介紹
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- 這網站做為作品集而架設，不定時更新。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 使用的程式語言與框架
 
-### Lints and fixes files
-```
-npm run lint
-```
+- 程式語言
+ - HTML5
+ - CSS3
+ - JavaScript
+ - Python
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 框架
+ - Bootstrap 5
+ - Vue 3
+
+### [點此進入網站](saplingouo.github.io/AnimeRecordVue/).

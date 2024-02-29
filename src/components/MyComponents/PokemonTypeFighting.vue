@@ -148,7 +148,7 @@ export default {
     <div class="row g-0">
         <div class="col">
             <h1>遇到的寶可夢屬性</h1>
-            <button class="col-6 fs-1" v-for="(selectedType, index) in selectedTypes" :key="index" @click="deleteType(index)" v-show="types[selectedType.type] != null">{{ types[selectedType.type] ? types[selectedType.type].typeCH : null }}</button>
+            <button class="col-6 fs-1 rounded-circle" v-for="(selectedType, index) in selectedTypes" :key="index" @click="deleteType(index)" v-show="types[selectedType.type] != null">{{ types[selectedType.type] ? types[selectedType.type].typeCH : null }}</button>
             <div class="row g-0">
                 <button class="typeImg col-3 border-0 rounded-pill m-1 p-1 fw-bold text-light" :style=" {'background-color':types[index].typeColor ,'background-image':'url('+types[index].typeImg+')'}" v-for="(type, index) in types" :key="type" @click="updateType(index)">{{ type.typeCH }}</button>
             </div>
