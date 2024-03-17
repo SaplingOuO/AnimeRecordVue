@@ -20,11 +20,6 @@ export default {
                     description: '背景自動換色',
                     // imageSRC: 'ABC',
                 },
-                {
-                    title: 'PokemonTypeFighting',
-                    description: '寶可夢屬性對抗',
-                    // imageSRC: 'ABC',
-                },
             ],
             showView:1,
         };

@@ -46,11 +46,6 @@ const routes = [
         name: 'BackgroundColorChange',
         component: () => import('../components/MyComponents/BackgroundColorChange.vue'),
       },
-      {
-        path:'PokemonTypeFighting',
-        name: 'PokemonTypeFighting',
-        component: () => import('../components/MyComponents/PokemonTypeFighting.vue'),
-      },
     ]
   },
   {
@@ -66,6 +61,11 @@ const routes = [
         path:'AnimeList',
         name: 'AnimeList',
         component: () => import('../components/MyProject/AnimeList.vue'),
+      },
+      {
+        path:'PokemonTypeFighting',
+        name: 'PokemonTypeFighting',
+        component: () => import('../components/MyProject/PokemonTypeFighting.vue'),
       },
     ],
   },

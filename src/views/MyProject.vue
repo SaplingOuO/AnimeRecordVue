@@ -10,6 +10,11 @@ export default {
                     description: '第一個從0開始學習做出來的專案，從中學習到vue、bootstrap、python如何使用',
                     // imageSRC: '',
                 },
+                {
+                    title: 'PokemonTypeFighting',
+                    description: '寶可夢屬性對抗',
+                    // imageSRC: 'ABC',
+                },
             ],
             showView: 1,
         };
