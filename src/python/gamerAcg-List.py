@@ -27,7 +27,7 @@ title = ['中文','日文','英文','圖片','編號','上映日期','季']
 allData = []
 #ws.append(title)
 
-i = 3 #起始頁面
+i = 1 #起始頁面
 o = 5 #結束頁面
 index = 0
 while (i<=o):#頁數
@@ -60,7 +60,7 @@ while (i<=o):#頁數
                 if company != '' :
                     aName = soup.select('div.BH-lbox.ACG-mster_box1.hreview-aggregate.hreview h1')
                     aName1 = soup.select('div.BH-lbox.ACG-mster_box1.hreview-aggregate.hreview h2')
-                    aImage = soup.select('div.ACG-box1-left img')
+                    aImage = soup.select('div.BH-lbox.ACG-mster_box1.hreview-aggregate.hreview img')
                     imageURL = aImage[0].get('src')
                     aNameMix = aName + aName1
                     dateStr = soup.select('div.BH-lbox.ACG-mster_box1.hreview-aggregate.hreview ul.ACG-box1listA li')[5].text.strip()
@@ -176,7 +176,7 @@ while (i<=o):#頁數
 
 
                 print('\n--------------第'+ str(index) +'輪結束--------------')
-                time.sleep(sleeptime(0,0,0.5))
+                time.sleep(sleeptime(0,0,3))
     i = i + 1
 tEnd = time.time()#計時結束\
 #fp.close()
