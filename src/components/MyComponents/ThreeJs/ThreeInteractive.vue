@@ -1,15 +1,67 @@
   <template>
-      <div ref="canvasContainer" class="position-absolute top-50 start-50 translate-middle"></div>
+    <div class="row g-0">
+      <div class="col h2">時間:</div>
+      <div class="col h2">{{ time }}</div>
+    </div>
+    <div class="row g-0">
+      <div class="col h2">分數:</div>
+      <div class="col h2">{{ score }}</div>
+    </div>
+    <div class="row g-0">
+      <div class="col h2">平均每秒得分:</div>
+      <div class="col h2">{{ average }}</div>
+    </div>
+    <div ref="canvasContainer" class="position-absolute top-50 start-50 translate-middle">操作: 方向鍵</div>
   </template>
 
 <script>
 import * as THREE from 'three';
 
 export default {
+  data(){
+    return{
+      startTime: null,
+      currentTime: null,
+      time: '00:00:00.000',
+      score: 0,
+      average: 0,
+    }
+  },
+  created(){
+    this.startTime = new Date();
+    this.updateTime();
+    setInterval(this.updateTime, 1);
+  },
   mounted() {
     this.init();
   },
   methods: {
+    updateTime(){
+      this.currentTime = new Date();
+
+      let diff = Math.floor(this.currentTime - this.startTime);
+      let diffAverage = Math.floor(diff / 1000);
+      let hours = Math.floor(diff/3600000);
+      diff = diff % 3600000;
+      let minutes = Math.floor(diff/60000);
+      diff = diff % 60000;
+      let seconds = Math.floor(diff/1000);
+      let milliseconds = diff % 1000;
+
+      this.time = this.pad(hours) + ':' + this.pad(minutes) + ':' + this.pad(seconds) + '.' + this.padMS(milliseconds);
+
+      if(diffAverage > 0){
+        this.average = (this.score / diffAverage).toFixed(2);
+      }else{
+        this.average = 0;
+      }
+    },
+    pad(num) {
+      return num.toString().padStart(2, '0');
+    },
+    padMS(num){
+      return num.toString().padStart(3, '0');
+    },
     init() {
       // 創建場景、相機和渲染器
       this.scene = new THREE.Scene();
@@ -86,6 +138,7 @@ export default {
       // 檢查玩家球體是否與障礙物球體相撞
       if (this.player.position.distanceTo(this.obstacle.position) < 1) {
         this.obstacle.position.set(THREE.MathUtils.randFloat(0, 10), THREE.MathUtils.randFloat(0, 10), this.obstacle.position.z);
+        this.score += 1;
       }
 
       // 移動玩家球體
