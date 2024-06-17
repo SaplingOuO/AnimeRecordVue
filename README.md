@@ -11,6 +11,7 @@
   - CSS3
   - JavaScript
   - Python
+  - THREE.js
 
 - 框架
   - Bootstrap 5
