@@ -20,6 +20,21 @@ export default {
                     description: '背景自動換色',
                     // imageSRC: 'ABC',
                 },
+                {
+                    title: 'ThreeCube',
+                    description: 'Three方塊',
+                    // imageSRC: 'ABC',
+                },
+                {
+                    title: 'ThreeInteractive',
+                    description: 'Three互動的平面',
+                    // imageSRC: 'ABC',
+                },
+                {
+                    title: 'ThreeExample',
+                    description: 'Three練習範例',
+                    // imageSRC: 'ABC',
+                },
             ],
             showView:1,
         };

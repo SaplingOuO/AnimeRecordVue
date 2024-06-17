@@ -16,9 +16,9 @@ const routes = [
         component: () => import('../views/SlicingCoding.vue'),
       },
       {
-        path:'ParallaxRoad',
-        name: 'ParallaxRoad',
-        component: () => import('../components/SlicingCoding/ParallaxRoad.vue'),
+        path:'slicingTest1',
+        name: 'slicingTest1',
+        component: () => import('../components/SlicingCoding/slicingTest1.vue'),
       },
     ],
   },
@@ -45,6 +45,21 @@ const routes = [
         path:'BackgroundColorChange',
         name: 'BackgroundColorChange',
         component: () => import('../components/MyComponents/BackgroundColorChange.vue'),
+      },
+      {
+        path:'ThreeCube',
+        name: 'ThreeCube',
+        component: () => import('../components/MyComponents/ThreeJs/ThreeCube.vue'),
+      },
+      {
+        path:'ThreeInteractive',
+        name: 'ThreeInteractive',
+        component: () => import('../components/MyComponents/ThreeJs/ThreeInteractive.vue'),
+      },
+      {
+        path:'ThreeExample',
+        name: 'ThreeExample',
+        component: () => import('../components/MyComponents/ThreeJs/ThreeExample.vue'),
       },
     ]
   },

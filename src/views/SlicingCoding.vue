@@ -6,9 +6,9 @@ export default {
             cards: [],
             loadData: [
                 {
-                    title: 'ParallaxRoad',
-                    description: '滾動視差',
-                    // imageSRC: 'ABC',
+                    title: 'SlicingTest1',
+                    description: '第一個切版練習',
+                    // imageSRC: '',
                 },
             ],
             showView:1,

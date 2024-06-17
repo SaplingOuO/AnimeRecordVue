@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="">
     <AppMenu />
     <router-view />
   </div>

@@ -145,25 +145,25 @@ export default {
 </script>
 
 <template>
-    <div class="row g-0">
-        <div class="col">
-            <h1>遇到的寶可夢屬性</h1>
-            <button class="col-6 fs-1 rounded-circle" v-for="(selectedType, index) in selectedTypes" :key="index" @click="deleteType(index)" v-show="types[selectedType.type] != null">{{ types[selectedType.type] ? types[selectedType.type].typeCH : null }}</button>
-            <div class="row g-0">
+    <div class="row g-0 overflow-hidden">
+        <div class="col-12 col-sm">
+            <div class="h1 text-center">遇到的寶可夢屬性</div>
+            <button class="col-6 fs-1" v-for="(selectedType, index) in selectedTypes" :key="index" @click="deleteType(index)" v-show="types[selectedType.type] != null">{{ types[selectedType.type] ? types[selectedType.type].typeCH : null }}</button>
+            <div class="row g-0 justify-content-center">
                 <button class="typeImg col-3 border-0 rounded-pill m-1 p-1 fw-bold text-light" :style=" {'background-color':types[index].typeColor ,'background-image':'url('+types[index].typeImg+')'}" v-for="(type, index) in types" :key="type" @click="updateType(index)">{{ type.typeCH }}</button>
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-12 col-sm text-center">
             <h1>效果絕佳</h1>
-            <div class="row g-0" v-for="item in superEffectiveView" :key="item">
-                <div class="col">{{ item.type }}</div>
-                <div class="col">{{ item.magnification }}</div>
+            <div class="row g-0 justify-content-center" v-for="item in superEffectiveView" :key="item">
+                <div class="col-2 border border-2 border-end-0">{{ item.type }}</div>
+                <div class="col-2 border border-2 border-start-0">{{ item.magnification }}</div>
             </div>
             <h1>效果不好</h1>
-            <div class="row g-0" v-for="item in weaknessView" :key="item">
-                <div class="col">{{ item.type }}</div>
-                <div class="col">{{ item.magnification }}</div>
+            <div class="row g-0 justify-content-center" v-for="item in weaknessView" :key="item">
+                <div class="col-2 border border-2 border-end-0">{{ item.type }}</div>
+                <div class="col-2 border border-2 border-start-0">{{ item.magnification }}</div>
             </div>
             <!-- <h1>有效果</h1>
             <div class="row g-0" v-for="item in normalView" :key="item">
@@ -171,9 +171,9 @@ export default {
                 <div class="col">{{ item.magnification }}</div>
             </div> -->
             <h1>沒有效果</h1>
-            <div class="row g-0" v-for="item in noEffectiveView" :key="item">
-                <div class="col">{{ item.type }}</div>
-                <div class="col">{{ item.magnification }}</div>
+            <div class="row g-0 justify-content-center" v-for="item in noEffectiveView" :key="item">
+                <div class="col-2 border border-2 border-end-0">{{ item.type }}</div>
+                <div class="col-2 border border-2 border-start-0">{{ item.magnification }}</div>
             </div>
         </div>
     </div>
