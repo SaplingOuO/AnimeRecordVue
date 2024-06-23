@@ -16,5 +16,9 @@
 - 框架
   - Bootstrap 5
   - Vue 3
+  - Express
+
+- 資料庫
+  - SQLite3
 
 ### [點此進入網站](https://saplingouo.github.io/AnimeRecordVue/)

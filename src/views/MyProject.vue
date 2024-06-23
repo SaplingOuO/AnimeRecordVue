@@ -15,6 +15,11 @@ export default {
                     description: '寶可夢屬性對抗',
                     // imageSRC: 'ABC',
                 },
+                {
+                    title: 'ShopDemo/frontEnd',
+                    description: '購物車、後台、會員練習',
+                    // imageSRC: 'ABC',
+                },
             ],
             showView: 1,
         };
