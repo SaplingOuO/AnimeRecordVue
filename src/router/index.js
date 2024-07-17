@@ -83,9 +83,9 @@ const routes = [
         component: () => import('../components/MyProject/PokemonTypeFighting.vue'),
       },
       {
-        path:'ShopDemo/frontEnd',
-        name: 'ShopDemo/frontEnd',
-        component: () => import('../components/MyProject/ShopDemo/frontEnd.vue'),
+        path:'ShopDemo',
+        name: 'ShopDemo',
+        component: () => import('../components/MyProject/ShopDemo.vue'),
       },
     ],
   },

@@ -7,7 +7,6 @@ import Carousel3d from 'vue3-carousel-3d'
 import "vue3-carousel-3d/dist/index.css"
 import store from './store/store.js'
 import scss from 'sass'
-
 // import axios from 'axios'
 // import VueAxios from 'vue-axios'
 

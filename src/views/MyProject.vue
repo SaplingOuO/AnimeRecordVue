@@ -16,7 +16,7 @@ export default {
                     // imageSRC: 'ABC',
                 },
                 {
-                    title: 'ShopDemo/frontEnd',
+                    title: 'ShopDemo',
                     description: '購物車、後台、會員練習',
                     // imageSRC: 'ABC',
                 },
