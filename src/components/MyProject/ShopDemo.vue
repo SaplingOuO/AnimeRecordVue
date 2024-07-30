@@ -9,26 +9,27 @@ export default {
                 quantity: '',
             },
             products: [
-                { name: '商品A', price: '100', quantity: '123' },
-                { name: '商品B', price: '50', quantity: '213' },
-                { name: '商品C', price: '150', quantity: '312' },
-                { name: '商品D', price: '200', quantity: '132' },
-                { name: '商品E', price: '1050', quantity: '231' },
-                { name: '商品F', price: '30', quantity: '321' },
-                { name: '商品AA', price: '100', quantity: '123' },
-                { name: '商品BB', price: '50', quantity: '213' },
-                { name: '商品CC', price: '150', quantity: '312' },
-                { name: '商品DD', price: '200', quantity: '132' },
-                { name: '商品EE', price: '1050', quantity: '231' },
-                { name: '商品FF', price: '30', quantity: '321' },
-                { name: '商品AAA', price: '100', quantity: '123' },
-                { name: '商品BBB', price: '50', quantity: '213' },
-                { name: '商品CCC', price: '150', quantity: '312' },
-                { name: '商品DDD', price: '200', quantity: '132' },
-                { name: '商品EEE', price: '1050', quantity: '231' },
-                { name: '商品FFF', price: '30', quantity: '321' },
+                { name: '商品A', price: '100', quantity: '123',  selectedQuantity: 1 },
+                { name: '商品B', price: '50', quantity: '213', selectedQuantity: 1 },
+                { name: '商品C', price: '150', quantity: '312', selectedQuantity: 1 },
+                { name: '商品D', price: '200', quantity: '132', selectedQuantity: 1 },
+                { name: '商品E', price: '1050', quantity: '231', selectedQuantity: 1 },
+                { name: '商品F', price: '30', quantity: '321', selectedQuantity: 1 },
+                { name: '商品AA', price: '100', quantity: '123', selectedQuantity: 1 },
+                { name: '商品BB', price: '50', quantity: '213', selectedQuantity: 1 },
+                { name: '商品CC', price: '150', quantity: '312', selectedQuantity: 1 },
+                { name: '商品DD', price: '200', quantity: '132', selectedQuantity: 1 },
+                { name: '商品EE', price: '1050', quantity: '231', selectedQuantity: 1 },
+                { name: '商品FF', price: '30', quantity: '321', selectedQuantity: 1 },
+                { name: '商品AAA', price: '100', quantity: '123', selectedQuantity: 1 },
+                { name: '商品BBB', price: '50', quantity: '213', selectedQuantity: 1 },
+                { name: '商品CCC', price: '150', quantity: '312', selectedQuantity: 1 },
+                { name: '商品DDD', price: '200', quantity: '132', selectedQuantity: 1 },
+                { name: '商品EEE', price: '1050', quantity: '231', selectedQuantity: 1 },
+                { name: '商品FFF', price: '30', quantity: '321', selectedQuantity: 1 },
             ],
             cart: [],
+            selectedQuantity: 1,
         }
     },
     methods: {
@@ -48,6 +49,7 @@ export default {
                         name: this.newProduct.name,
                         price: this.newProduct.price,
                         quantity: this.newProduct.quantity,
+                        selectedQuantity: 1,
                     });
                 }
             }
@@ -66,8 +68,26 @@ export default {
             }
             console.log("刪除後資料庫:", this.products);
         },
-        addcart() {
-            this.cart.push(this.products);
+        addcart(product) {
+            const cartProductIndex = this.cart.findIndex(cartItem => cartItem.name === product.name);
+            if (cartProductIndex !== -1) {
+                this.cart[cartProductIndex].quantity += this.selectedQuantity;
+            } else {
+                this.cart.push({
+                    name: product.name,
+                    price: product.price,
+                    quantity: product.selectedQuantity,
+                });
+            }
+            console.log("購物車:", this.cart);
+        },
+        removeFromCart(index) {
+            this.cart.splice(index, 1);
+        },
+        totalAmount() {
+            return this.cart.reduce((total, item) => {
+                return total + item.price * item.quantity;
+            }, 0);
         },
     },
 }
@@ -107,22 +127,23 @@ export default {
                         <div class="fs-5">商品名稱：{{ product.name }}</div>
                         <div>商品價格：{{ product.price }}</div>
                         <div>剩餘數量：{{ product.quantity }}</div>
-                        <button @click="addcart" class="bg-warning m-2">加入購物車</button>
+                        <input v-model.number="product.selectedQuantity" type="number" min="1" class="form-control mb-2" placeholder="數量">
+                        <button @click="addcart(product)" class="bg-warning m-2">加入購物車</button>
                     </div>
                 </div>
             </div>
             <!-- 購物車 -->
             <div class="col-12 col-md-4 p-4">
                 <div class="fs-1">購物車</div>
-                <div class="row g-0 bg-success w-100 m-2 p-2 position-relative">
+                <div>總金額: {{ totalAmount() }}</div>
+                <div v-for="(item, index) in cart" :key="item.name" class="row g-0 bg-success w-100 m-2 p-2 position-relative">
                     <div class="col-10">
-                        <div class="fs-5">商品名稱：</div>
-                        <div>商品價格：</div>
-                        <div>購買數量：</div>
-                        <button class="bg-warning m-2">刪除</button>
+                        <div class="fs-5">商品名稱：{{ item.name }}</div>
+                        <div>商品價格：{{ item.price }}</div>
+                        <div>購買數量：{{ item.quantity }}</div>
+                        <button @click="removeFromCart(index)" class="bg-warning m-2">刪除</button>
                     </div>
                 </div>
-                <div>總金額:</div>
             </div>
         </div>
     </div>
