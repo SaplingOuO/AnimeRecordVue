@@ -321,9 +321,9 @@ export default {
         let animeNotes = JSON.parse(localStorage.getItem('animeNotes')) || [];
 
         const noteData = {
-          title: this.selectedCardTitle,
-          episode: this.episodeNumber,
-          note: this.noteContent,
+          selectedCardTitle: this.selectedCardTitle,
+          episodeNumber: this.episodeNumber,
+          noteContent: this.noteContent,
         };
 
         const existingNoteIndex = animeNotes.findIndex(note => 
