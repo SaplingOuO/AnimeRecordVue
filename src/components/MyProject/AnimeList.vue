@@ -17,12 +17,6 @@
                   <option v-for="yearOption in yearOptions" :key="yearOption" :value="yearOption" v-text="yearOption"
                     @change="selectedYear"></option>
                 </select>
-                <!-- <select class="form-select " aria-label="Default select example" v-model="year" v-on:change="handleSearChange">
-									<option value="">請選擇年份</option>
-									<template v-for="year in years">
-										<vue-year :year="year"></vue-year>
-									</template>
-								</select> -->
               </div>
 
               <!-- radio關鍵字查詢 -->
@@ -63,15 +57,15 @@
             <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-0 " ref="cardList">
               <!-- 卡片 -->
               <!-- <img :src="require(`@/assets/animeImages/0000114480.JPG`)"> -->
-              <template v-for="card in cards" :key="card">
+              <div v-for="card in cards" :key="card">
                 <div class="column">
                   <!-- 
-									[:src, :title, :tag] 
-									給Vue.component()使用的組件
-	
-									[card.imageSrc, card.title, card.tag]
-									匯入資料的變數名稱
-								-->
+                  [:src, :title, :tag] 
+                  給Vue.component()使用的組件
+
+                  [card.imageSrc, card.title, card.tag]
+                  匯入資料的變數名稱
+                  -->
                   <!-- <vueCard :src="card.imageSrc" :title="card.title" :tag="card.tag"></vueCard> -->
                   <div class="col position-relative card" :tag="card.tag">
                     <div class="img-fluid" style="height: 300px">
@@ -81,24 +75,51 @@
                     <div class="position-absolute bottom-0 start-0 w-100 badge bg-dark" style="--bs-bg-opacity: 0.4">
                       <h5 class="title text-truncate">{{ card.title }}</h5>
                     </div>
-                    <a href="#" class="stretched-link"></a>
+                    <button class="stretched-link" @click="showModal(card.title)" data-bs-toggle="modal" data-bs-target="#recordField"></button>
                   </div>
                 </div>
-              </template>
+              </div>
 
               <!-- 卡片範例 -->
               <!-- <div class="col position-relative card">
-								<img class="img-fluid card-img-top " src="https://fakeimg.pl/500x500/">
-								<div class="position-absolute bottom-0 start-0 badge w-100">
-									<h5 class="text-truncate">Title</h5>
-								</div>
-								<a href="#" class="stretched-link"></a>
-							</div> -->
+                <img class="img-fluid card-img-top " src="https://fakeimg.pl/500x500/">
+                <div class="position-absolute bottom-0 start-0 badge w-100">
+                  <h5 class="text-truncate">Title</h5>
+                </div>
+                <a href="#" class="stretched-link"></a>
+              </div> -->
               <!-- 卡片範例end  以下重複範例 -->
             </div>
           </div>
         </div>
         <div class="col-lg-1">
+        </div>
+      </div>
+    </div>
+    <!-- 彈出視窗 -->
+    <div class="modal fade" id="recordField" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- 標題 -->
+            <h5 class="modal-title" id="exampleModalLabel">{{ selectedCardTitle }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- 集數 -->
+            <input v-model="episodeNumber" type="number" min="1" class="form-control text-center" placeholder="集數">
+            <!-- 輸入筆記 -->
+            <div class="row g-0">
+              <input v-model="noteContent" class="col form-control" type="text" placeholder="筆記">
+              <button class="col-2 btn btn-primary" @click="saveNote">送出</button>
+            </div>
+            <!-- 筆記 -->
+            <div class="m-2">
+              <li v-for="(note, index) in showModalData.filter(n => n.selectedCardTitle === selectedCardTitle)" :key="index" class="border-top border-bottom">
+                第{{  note.episodeNumber  }}集 {{  note.noteContent  }}
+              </li>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -113,10 +134,10 @@ import ACGList from "../../assets/MyProject/gamerAcg-List.json";
 export default {
   data() {
     return {
-      cards: [],
-      loadedCount: 24,
-      searchInput: '',
-      searchData: [],
+      cards: [], //卡片本體
+      loadedCount: 24, //一次所顯示的個數
+      searchInput: '', 
+      searchData: [], 
       searchSeason: '',
       seasonOptions: [
         { label: '全', value: '' },
@@ -127,15 +148,24 @@ export default {
       ],
       searchYear: '',
       yearOptions: [],
+
+      showModalData: [], //彈出視窗的資料
+      selectedCardTitle: '',
+      episodeNumber: '',
+      noteContent: '',
     };
   },
   mounted() {
     this.cardData();
     this.loadCards();
+    this.localStorageData();
     this.isSearch = false;
     // this.handleScroll();
     window.addEventListener('scroll', this.handleScroll);
     this.gatAllYears();
+  },
+  setup() {
+
   },
   methods: {
     //載入卡片資料
@@ -265,6 +295,72 @@ export default {
         })
       }
     },
+    //讀取localStorage資料
+    localStorageData(){
+      let animeNotes = JSON.parse(localStorage.getItem('animeNotes')) || [];
+      if(animeNotes){
+        for(let i=0; i < animeNotes.length; i++){
+          const note = {
+            selectedCardTitle: animeNotes[i].title, // 選中的卡片標題
+            episodeNumber: animeNotes[i].episode,  // 儲存集數
+            noteContent: animeNotes[i].note,  // 儲存筆記內容
+          }
+          this.showModalData.push(note);
+        }
+      }
+    },
+    //彈出視窗
+    showModal(title) {
+      this.selectedCardTitle = title;
+    },
+    //儲存筆記
+    saveNote() {
+      if (this.episodeNumber && this.noteContent) {
+        
+        // 讀取現有筆記
+        let animeNotes = JSON.parse(localStorage.getItem('animeNotes')) || [];
+
+        const noteData = {
+          title: this.selectedCardTitle,
+          episode: this.episodeNumber,
+          note: this.noteContent,
+        };
+
+        const existingNoteIndex = animeNotes.findIndex(note => 
+          note.title === this.selectedCardTitle && note.episode === this.episodeNumber
+        );
+
+        if (existingNoteIndex >= 0) {
+          // 更新已存在的筆記
+          animeNotes[existingNoteIndex] = noteData;
+          this.showModalData[existingNoteIndex].noteContent = this.noteContent;
+          // console.log('上 showModalData'+this.showModalData);
+          // console.log('上 animeNotes'+animeNotes);
+          console.log('----------------------------');
+        } else {
+          // 添加新筆記
+          animeNotes.push(noteData);
+          this.showModalData.push(noteData);
+          // console.log('下 showModalData'+this.showModalData);
+          // console.log('下 animeNotes'+animeNotes);
+        }
+
+        // 儲存回 localStorage
+        localStorage.setItem('animeNotes', JSON.stringify(animeNotes));
+
+        // 清空輸入框
+        this.$nextTick(() => {
+          this.episodeNumber = '';
+          this.noteContent = '';
+        });
+        // 提示成功訊息
+        alert('筆記已儲存！');
+
+        this.$forceUpdate();
+      } else {
+        alert('請輸入集數和筆記內容。');
+      }
+    }
   },
 };
 </script>

@@ -71,7 +71,7 @@ export default {
         addcart(product) {
             const cartProductIndex = this.cart.findIndex(cartItem => cartItem.name === product.name);
             if (cartProductIndex !== -1) {
-                this.cart[cartProductIndex].quantity += this.selectedQuantity;
+                this.cart[cartProductIndex].quantity += product.selectedQuantity;
             } else {
                 this.cart.push({
                     name: product.name,
@@ -127,7 +127,7 @@ export default {
                         <div class="fs-5">商品名稱：{{ product.name }}</div>
                         <div>商品價格：{{ product.price }}</div>
                         <div>剩餘數量：{{ product.quantity }}</div>
-                        <input v-model.number="product.selectedQuantity" type="number" min="1" class="form-control mb-2" placeholder="數量">
+                        <input v-model="product.selectedQuantity" type="number" min="1" class="form-control mb-2" placeholder="數量">
                         <button @click="addcart(product)" class="bg-warning m-2">加入購物車</button>
                     </div>
                 </div>
