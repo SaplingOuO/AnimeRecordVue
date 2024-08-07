@@ -8,7 +8,17 @@
   <title>404 Redirect</title>
 
   <script>
-    sessionStorage.redirect = location.href;
+    (function() {
+      // 如果沒有被標記為已重定向
+      if (!sessionStorage.getItem('hasRedirected')) {
+        // 儲存目前路徑到sessionStorage
+        sessionStorage.setItem('redirectPath', location.pathname);
+        // 重定向到應用程式的首頁
+        window.location.replace('/AnimeRecordVue');
+        // 設定標記表示已重定向
+        sessionStorage.setItem('hasRedirected', 'true');
+      }
+    })();
   </script>
 
   <meta http-equiv="refresh" content="0;URL='/AnimeRecordVue'"></meta>
@@ -17,14 +27,17 @@
 <body>
     <body>
         <script>
-            (function(){
-              let redirect = sessionStorage.redirect;
-              delete sessionStorage.redirect;
-              if (redirect && redirect !== location.href) {
-                history.replaceState(null, null, redirect);
-              }
-            })();
-          </script>
+          (function() {
+            let redirectPath = sessionStorage.getItem('redirectPath');
+            // 如果重定向路徑存在且不等於目前路徑
+            if (redirectPath && redirectPath !== location.pathname) {
+              history.replaceState(null, null, redirectPath);
+            }
+            // 清除重定向路徑和標記
+            sessionStorage.removeItem('redirectPath');
+            sessionStorage.removeItem('hasRedirected');
+          })();
+        </script>
         <!-- DO NOT touch the following DIV -->
         <div id="q-app"></div>
     </body>
