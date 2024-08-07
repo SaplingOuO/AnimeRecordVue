@@ -3,44 +3,38 @@
 
 <head>
     <!-- 參考網址:https://unzan.medium.com/%E6%96%BCgithub-page%E9%83%A8%E5%B1%AC%E9%9D%9C%E6%85%8Bvue-js%E5%B0%88%E6%A1%88-%E5%9C%A8history-mode%E4%B8%8B%E5%AD%90%E9%A0%81%E9%9D%A2%E6%9C%83%E9%87%8D%E6%96%B0%E5%B0%8E%E5%90%91%E5%88%B0404%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-139f55323164 -->
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <title>404 Redirect</title>
 
-  <title>404 Redirect</title>
-
-  <script>
-    (function() {
-      // 如果沒有被標記為已重定向
-      if (!sessionStorage.getItem('hasRedirected')) {
-        // 儲存目前路徑到sessionStorage
-        sessionStorage.setItem('redirectPath', location.pathname);
-        // 重定向到應用程式的首頁
-        window.location.replace('/AnimeRecordVue');
-        // 設定標記表示已重定向
-        sessionStorage.setItem('hasRedirected', 'true');
-      }
-    })();
-  </script>
-
-  <meta http-equiv="refresh" content="0;URL='/AnimeRecordVue'"></meta>
+    <script>
+        (function () {
+            // 如果沒有被標記為已重定向
+            if (!sessionStorage.getItem('hasRedirected')) {
+                // 儲存目前路徑到sessionStorage
+                sessionStorage.setItem('redirectPath', location.pathname);
+                // 重定向到應用程式的首頁
+                window.location.replace('/AnimeRecordVue');
+                // 設定標記表示已重定向
+                sessionStorage.setItem('hasRedirected', 'true');
+            }
+        })();
+    </script>
 </head>
 
 <body>
-    <body>
-        <script>
-          (function() {
+    <div id="q-app"></div>
+    <script>
+        (function () {
             let redirectPath = sessionStorage.getItem('redirectPath');
             // 如果重定向路徑存在且不等於目前路徑
             if (redirectPath && redirectPath !== location.pathname) {
-              history.replaceState(null, null, redirectPath);
+                history.replaceState(null, null, redirectPath);
             }
             // 清除重定向路徑和標記
             sessionStorage.removeItem('redirectPath');
             sessionStorage.removeItem('hasRedirected');
-          })();
-        </script>
-        <!-- DO NOT touch the following DIV -->
-        <div id="q-app"></div>
-    </body>
+        })();
+    </script>
 </body>
 
 
