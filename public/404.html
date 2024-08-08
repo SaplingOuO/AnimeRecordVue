@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Single Page Apps for GitHub Pages</title>
+    <script type="text/javascript">
+      // 參考網址(https://medium.com/@JammsL/%E5%BE%9E%E5%81%9A%E4%B8%AD%E5%AD%B8-github-pages%E9%87%8D%E6%95%B4%E6%80%8E%E6%9C%83404-%E8%B7%AF%E7%94%B1%E5%91%A2-%E4%B8%8B-05d91f4b68b7)
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      // This script takes the current url and converts the path and query
+      // string into just a query string, and then redirects the browser
+      // to the new url with only a query string and hash fragment,
+      // e.g. https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
+      // Note: this 404.html file must be at least 512 bytes for it to work
+      // with Internet Explorer (it is currently > 512 bytes)
 
-<head>
-    <!-- 參考網址:https://unzan.medium.com/%E6%96%BCgithub-page%E9%83%A8%E5%B1%AC%E9%9D%9C%E6%85%8Bvue-js%E5%B0%88%E6%A1%88-%E5%9C%A8history-mode%E4%B8%8B%E5%AD%90%E9%A0%81%E9%9D%A2%E6%9C%83%E9%87%8D%E6%96%B0%E5%B0%8E%E5%90%91%E5%88%B0404%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-139f55323164 -->
-    <meta charset="utf-8" />
+      // If you're creating a Project Pages site and NOT using a custom domain,
+      // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
+      // This way the code will only replace the route part of the path, and not
+      // the real directory in which the app resides, for example:
+      // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
+      // https://username.github.io/repo-name/?/one/two&a=b~and~c=d#qwe
+      // Otherwise, leave pathSegmentsToKeep as 0.
 
-    <title>404 Redirect</title>
+      var pathSegmentsToKeep = 0;
 
-    <script>
-        sessionStorage.redirect = location.href;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+
     </script>
-
-    <meta http-equiv="refresh" content="0;URL='/AnimeRecordVue'">
-    </meta>
-</head>
-
-<body>
-    <script>
-        (function () {
-            let redirectPath = sessionStorage.getItem('redirectPath');
-            // 如果重定向路径存在且不等于当前路径
-            if (redirectPath && redirectPath !== location.pathname) {
-                history.replaceState(null, null, redirectPath);
-            }
-            // 清除重定向路径和标记
-            sessionStorage.removeItem('redirectPath');
-            sessionStorage.removeItem('hasRedirected');
-        })();
-    </script>
-    <!-- DO NOT touch the following DIV -->
-    <div id="q-app"></div>
-</body>
-
-
+  </head>
+  <body>
+  </body>
 </html>
